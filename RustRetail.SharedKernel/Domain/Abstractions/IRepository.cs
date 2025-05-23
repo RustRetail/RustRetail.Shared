@@ -1,27 +1,32 @@
 ﻿using RustRetail.SharedKernel.Domain.Models;
+using System.Linq.Expressions;
 
 namespace RustRetail.SharedKernel.Domain.Abstractions
 {
-    public interface IRepository<TEntity, TKey> where TEntity : Entity<TKey>
+    public interface IRepository<TAggregate, TKey> where TAggregate : AggregateRoot<TKey>
     {
-        IQueryable<TEntity> GetQueryableSet();
+        Task AddAsync(TAggregate entity, CancellationToken cancellationToken = default);
 
-        Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
+        void Update(TAggregate entity);
 
-        void Update(TEntity entity);
+        void Delete(TAggregate entity);
 
-        void Delete(TEntity entity);
+        Task BulkInsertAsync(IEnumerable<TAggregate> entities, CancellationToken cancellationToken = default);
 
-        Task<T?> FirstOrDefaultAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default);
+        void BulkUpdate(IEnumerable<TAggregate> entities);
 
-        Task<T?> SingleOrDefaultAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default);
+        void BulkDelete(IEnumerable<TAggregate> entities);
 
-        Task<List<T>> ToListAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default);
+        Task<List<TAggregate>> GetAllAsync(CancellationToken cancellationToken = default);
 
-        Task BulkInsertAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+        Task<int> CountAsync(Expression<Func<TAggregate, bool>> predicate, CancellationToken cancellationToken = default);
 
-        void BulkUpdate(IEnumerable<TEntity> entities);
+        Task<T?> QueryAsync<T>(Func<IQueryable<TAggregate>, IQueryable<T>> queryFunc, CancellationToken cancellationToken = default);
 
-        void BulkDelete(IEnumerable<TEntity> entities);
+        Task<TAggregate?> GetByIdAsync(TKey id, bool asNoTracking = false, CancellationToken cancellationToken = default);
+
+        Task<List<TAggregate>> FindAsync(Expression<Func<TAggregate, bool>> predicate, CancellationToken cancellationToken = default);
+
+        Task<bool> ExistsAsync(Expression<Func<TAggregate, bool>> predicate, CancellationToken cancellationToken = default);
     }
 }
