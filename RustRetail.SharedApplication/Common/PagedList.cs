@@ -25,5 +25,27 @@
             PageSize = pageSize;
             TotalCount = totalCount;
         }
+
+        public static PagedList<T> Create(
+            IQueryable<T> query,
+            int pageNumber,
+            int pageSize)
+        {
+            int totalCount = query.Count();
+            var items = query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return new(items, pageNumber, pageSize, totalCount);
+        }
+
+        public static PagedList<T> Create(
+            List<T> items,
+            int pageNumber,
+            int pageSize,
+            int totalCount)
+        {
+            return new(items, pageNumber, pageSize, totalCount);
+        }
     }
 }
