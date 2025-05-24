@@ -19,5 +19,9 @@
             ProcessedOn = null;
             Error = null;
         }
+
+        public OutboxMessage()
+        {
+        }
     }
 }
