@@ -1,4 +1,4 @@
-﻿namespace RustRetail.SharedApplication.Common
+﻿namespace RustRetail.SharedKernel.Domain.Common
 {
     public class PagedList<T> where T : class
     {
