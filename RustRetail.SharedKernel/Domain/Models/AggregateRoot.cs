@@ -1,4 +1,5 @@
 ﻿using RustRetail.SharedKernel.Domain.Events;
+using RustRetail.SharedKernel.Domain.Events.Domain;
 
 namespace RustRetail.SharedKernel.Domain.Models
 {

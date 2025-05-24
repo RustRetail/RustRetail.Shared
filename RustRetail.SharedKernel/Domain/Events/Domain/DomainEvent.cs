@@ -1,5 +1,4 @@
-﻿
-namespace RustRetail.SharedKernel.Domain.Events
+﻿namespace RustRetail.SharedKernel.Domain.Events.Domain
 {
     public abstract class DomainEvent : IDomainEvent
     {

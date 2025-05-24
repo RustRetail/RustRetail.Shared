@@ -1,4 +1,4 @@
-﻿namespace RustRetail.SharedKernel.Domain.Events
+﻿namespace RustRetail.SharedKernel.Domain.Events.Domain
 {
     public interface IHasDomainEvents
     {

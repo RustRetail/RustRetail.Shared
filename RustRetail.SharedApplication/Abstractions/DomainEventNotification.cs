@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using RustRetail.SharedKernel.Domain.Events;
+using RustRetail.SharedKernel.Domain.Events.Domain;
 
 namespace RustRetail.SharedApplication.Abstractions
 {
