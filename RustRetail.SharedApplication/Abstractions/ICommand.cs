@@ -1,6 +1,9 @@
-﻿namespace RustRetail.SharedApplication.Abstractions
-{
-    public interface ICommand;
+﻿using MediatR;
+using RustRetail.SharedKernel.Domain.Abstractions;
 
-    public interface ICommand<TResponse>;
+namespace RustRetail.SharedApplication.Abstractions
+{
+    public interface ICommand : IRequest<Result>;
+
+    public interface ICommand<TResponse> : IRequest<Result<TResponse>>;
 }
