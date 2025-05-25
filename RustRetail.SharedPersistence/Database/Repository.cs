@@ -89,12 +89,13 @@ namespace RustRetail.SharedPersistence.Database
             IQueryable<TAggregate> query = SpecificationEvaluator.GetQuery(_dbSet.AsQueryable(), specification);
             if (!specification.PageNumber.HasValue || !specification.PageSize.HasValue)
             {
-                var allItems = await query.ToListAsync();
+                var allItems = await query.ToListAsync(cancellationToken);
                 return PagedList<TAggregate>.Create(allItems, 1, allItems.Count, allItems.Count);
             }
 
             return await Task.Run(() =>
-                PagedList<TAggregate>.Create(query, specification.PageNumber!.Value, specification.PageSize!.Value));
+                PagedList<TAggregate>.Create(query, specification.PageNumber!.Value, specification.PageSize!.Value),
+                cancellationToken);
         }
 
         public async Task<T?> QueryAsync<T>(Func<IQueryable<TAggregate>, IQueryable<T>> queryFunc, CancellationToken cancellationToken = default)
