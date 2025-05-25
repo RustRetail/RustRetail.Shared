@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RustRetail.SharedKernel.Domain.Abstractions;
+using RustRetail.SharedKernel.Domain.Common;
 using RustRetail.SharedKernel.Domain.Models;
 using System.Linq.Expressions;
 
 namespace RustRetail.SharedPersistence.Database
 {
     public class Repository<TAggregate, TKey>
-        : IRepository<TAggregate, TKey>
+        : IRepository<TAggregate, TKey>,
+        ISpecificationRepository<TAggregate, TKey>
         where TAggregate : AggregateRoot<TKey>
     {
         protected readonly DbContext _context;
@@ -65,11 +67,34 @@ namespace RustRetail.SharedPersistence.Database
             return await _dbSet.ToListAsync(cancellationToken);
         }
 
+        public async Task<TAggregate?> GetAsync(Specification<TAggregate, TKey> specification, CancellationToken cancellationToken = default)
+        {
+            return await SpecificationEvaluator.GetQuery(_dbSet.AsQueryable(), specification).FirstOrDefaultAsync(cancellationToken);
+        }
+
         public async Task<TAggregate?> GetByIdAsync(TKey id, bool asNoTracking = false, CancellationToken cancellationToken = default)
         {
             IQueryable<TAggregate> query = _dbSet;
             if (asNoTracking) query = query.AsNoTracking();
             return await query.FirstOrDefaultAsync(e => e.Id!.Equals(id), cancellationToken);
+        }
+
+        public async Task<List<TAggregate>> FindAsync(Specification<TAggregate, TKey> specification, CancellationToken cancellationToken = default)
+        {
+            return await SpecificationEvaluator.GetQuery(_dbSet.AsQueryable(), specification).ToListAsync(cancellationToken);
+        }
+
+        public async Task<PagedList<TAggregate>> FindPagedAsync(Specification<TAggregate, TKey> specification, CancellationToken cancellationToken = default)
+        {
+            IQueryable<TAggregate> query = SpecificationEvaluator.GetQuery(_dbSet.AsQueryable(), specification);
+            if (!specification.PageNumber.HasValue || !specification.PageSize.HasValue)
+            {
+                var allItems = await query.ToListAsync();
+                return PagedList<TAggregate>.Create(allItems, 1, allItems.Count, allItems.Count);
+            }
+
+            return await Task.Run(() =>
+                PagedList<TAggregate>.Create(query, specification.PageNumber!.Value, specification.PageSize!.Value));
         }
 
         public async Task<T?> QueryAsync<T>(Func<IQueryable<TAggregate>, IQueryable<T>> queryFunc, CancellationToken cancellationToken = default)
