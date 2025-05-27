@@ -1,7 +1,9 @@
-﻿namespace RustRetail.SharedInfrastructure.MinimalApi
+﻿using Microsoft.AspNetCore.Routing;
+
+namespace RustRetail.SharedInfrastructure.MinimalApi
 {
     public interface IEndpoint
     {
-        //void MapEndpoint(WebApplication app);
+        void MapEndpoint(IEndpointRouteBuilder app);
     }
 }
