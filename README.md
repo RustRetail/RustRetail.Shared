@@ -25,11 +25,13 @@ To incorporate these packages into your projects:
 1. **Install via NuGet Package Manager:**
 
 ```bash
-   dotnet add package RustRetail.SharedKernel --version 1.0.1
-   dotnet add package RustRetail.SharedApplication --version 1.0.1
-   dotnet add package RustRetail.SharedInfrastructure --version 1.0.1
-   dotnet add package RustRetail.SharedPersistence --version 1.0.1
+   dotnet add package RustRetail.SharedKernel
+   dotnet add package RustRetail.SharedApplication
+   dotnet add package RustRetail.SharedInfrastructure
+   dotnet add package RustRetail.SharedPersistence
 ```
+
+📌 Ensure that the versions match the latest published versions on NuGet.org.
 
 2. **Reference in your code:**
 
@@ -39,5 +41,3 @@ To incorporate these packages into your projects:
   using RustRetail.SharedInfrastructure;
   using RustRetail.SharedPersistence;
 ```
-
-📌 Ensure that the versions match the latest published versions on NuGet.org.
