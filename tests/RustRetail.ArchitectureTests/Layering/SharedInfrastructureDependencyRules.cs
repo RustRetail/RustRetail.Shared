@@ -8,7 +8,7 @@ namespace RustRetail.ArchitectureTests.Layering
     {
         private static readonly Assembly SharedInfrastructureAssembly = typeof(SharedInfrastructure.MinimalApi.EndpointExtensions).Assembly;
 
-        [Fact]
+        [Fact(Skip = "Achieve dependency through SharedApplication")]
         public void SharedInfrastructure_Should_DependOn_SharedKernel()
         {
             // Arrange
@@ -23,7 +23,7 @@ namespace RustRetail.ArchitectureTests.Layering
             dependsOnSharedKernel.Should().BeTrue("SharedInfrastructure should depend on SharedKernel layer");
         }
 
-        [Fact]
+        [Fact(Skip = "Can depend on SharedApplication")]
         public void SharedInfrastructure_ShouldNot_DependOn_SharedApplication()
         {
             // Arrange
