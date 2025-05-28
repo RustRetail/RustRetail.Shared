@@ -12,14 +12,19 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="xunit" />
 		<PackageReference Include="xunit.runner.visualstudio" />
+		<PackageReference Include="NetArchTest.Rules" />
+		<PackageReference Include="FluentAssertions" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\RustRetail.SharedApplication\RustRetail.SharedApplication.csproj" />
+	  <ProjectReference Include="..\..\src\RustRetail.SharedInfrastructure\RustRetail.SharedInfrastructure.csproj" />
+	  <ProjectReference Include="..\..\src\RustRetail.SharedKernel\RustRetail.SharedKernel.csproj" />
+	  <ProjectReference Include="..\..\src\RustRetail.SharedPersistence\RustRetail.SharedPersistence.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Using Include="Xunit" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Layering\" />
 	</ItemGroup>
 
 </Project>
