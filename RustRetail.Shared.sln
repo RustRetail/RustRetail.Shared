@@ -5,13 +5,13 @@ VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedKernel", "RustRetail.SharedKernel\RustRetail.SharedKernel.csproj", "{AE533A0C-A74A-4AAD-8A80-AA2E3FE36511}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedKernel", "src\RustRetail.SharedKernel\RustRetail.SharedKernel.csproj", "{AE533A0C-A74A-4AAD-8A80-AA2E3FE36511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedApplication", "RustRetail.SharedApplication\RustRetail.SharedApplication.csproj", "{D11B870A-389A-4D4D-97BA-A8F22EE8E435}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedApplication", "src\RustRetail.SharedApplication\RustRetail.SharedApplication.csproj", "{D11B870A-389A-4D4D-97BA-A8F22EE8E435}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedPersistence", "RustRetail.SharedPersistence\RustRetail.SharedPersistence.csproj", "{C2E6BE1A-F5C3-46EE-9305-F17B680829DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedPersistence", "src\RustRetail.SharedPersistence\RustRetail.SharedPersistence.csproj", "{C2E6BE1A-F5C3-46EE-9305-F17B680829DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedInfrastructure", "RustRetail.SharedInfrastructure\RustRetail.SharedInfrastructure.csproj", "{63225E8F-C66B-4E1E-8DB6-A047A2EEE519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustRetail.SharedInfrastructure", "src\RustRetail.SharedInfrastructure\RustRetail.SharedInfrastructure.csproj", "{63225E8F-C66B-4E1E-8DB6-A047A2EEE519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
