@@ -1,19 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		
+		<!-- Package Metadata -->
+		<Version>1.0.1</Version>
+		<Authors>RustRetail</Authors>
+		<Company>RustRetail</Company>
+		<PackageId>RustRetail.SharedPersistence</PackageId>
+		<Title>RustRetail SharedPersistence (Learning)</Title>
+		<Description>This is an experimental shared persistence library used for learning microservices and clean architecture with .NET.</Description>
+		<PackageTags>sharedpersistence; clean-architecture; learning; experimental; microservices</PackageTags>
+		<PackageProjectUrl>https://github.com/RustRetail/RustRetail.Shared</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/RustRetail/RustRetail.Shared</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>Initial release for learning and experimentation purposes.</PackageReleaseNotes>
+		<PackageIcon>icon.png</PackageIcon>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RustRetail.SharedKernel\RustRetail.SharedKernel.csproj" />
-  </ItemGroup>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.5" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\RustRetail.SharedKernel\RustRetail.SharedKernel.csproj" />
+		<None Include="icon.png" Pack="true" PackagePath=""/>
+	</ItemGroup>
 
 </Project>

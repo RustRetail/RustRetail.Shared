@@ -1,9 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Package Metadata -->
+		<Version>1.0.1</Version>
+		<Authors>RustRetail</Authors>
+		<Company>RustRetail</Company>
+		<PackageId>RustRetail.SharedKernel</PackageId>
+		<Title>RustRetail SharedKernel (Learning)</Title>
+		<Description>This is an experimental shared kernel library used for learning microservices and clean architecture with .NET.</Description>
+		<PackageTags>sharedkernel; clean-architecture; learning; experimental; microservices</PackageTags>
+		<PackageProjectUrl>https://github.com/RustRetail/RustRetail.Shared</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/RustRetail/RustRetail.Shared</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>Initial release for learning and experimentation purposes.</PackageReleaseNotes>
+		<PackageIcon>icon.png</PackageIcon>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="icon.png" Pack="true" PackagePath=""/>
+	</ItemGroup>
 
 </Project>

@@ -1,19 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		
+		<!-- Package Metadata -->
+		<Version>1.0.1</Version>
+		<Authors>RustRetail</Authors>
+		<Company>RustRetail</Company>
+		<PackageId>RustRetail.SharedApplication</PackageId>
+		<Title>RustRetail SharedApplication (Learning)</Title>
+		<Description>This is an experimental shared application library used for learning microservices and clean architecture with .NET.</Description>
+		<PackageTags>sharedapplication; clean-architecture; learning; experimental; microservices</PackageTags>
+		<PackageProjectUrl>https://github.com/RustRetail/RustRetail.Shared</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/RustRetail/RustRetail.Shared</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RustRetail.SharedKernel\RustRetail.SharedKernel.csproj" />
-  </ItemGroup>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>Initial release for learning and experimentation purposes.</PackageReleaseNotes>
+		<PackageIcon>icon.png</PackageIcon>
 
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="12.0.0" />
-    <PackageReference Include="MediatR" Version="12.5.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.5" />
-  </ItemGroup>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\RustRetail.SharedKernel\RustRetail.SharedKernel.csproj" />
+		<None Include="icon.png" Pack="true" PackagePath=""/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="12.0.0" />
+		<PackageReference Include="MediatR" Version="12.5.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.5" />
+	</ItemGroup>
 
 </Project>
