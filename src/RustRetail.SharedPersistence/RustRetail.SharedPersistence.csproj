@@ -7,7 +7,7 @@
 		<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
 		
 		<!-- Package Metadata -->
-		<Version>1.0.11</Version>
+		<Version>1.0.12</Version>
 		<Authors>RustRetail</Authors>
 		<Company>RustRetail</Company>
 		<PackageId>RustRetail.SharedPersistence</PackageId>

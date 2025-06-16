@@ -37,7 +37,7 @@ namespace RustRetail.SharedPersistence.Database
 
         public void BulkUpdate(IEnumerable<TAggregate> entities)
         {
-            _context.UpdateRange(entities);
+            _dbSet.UpdateRange(entities);
         }
 
         public async Task<int> CountAsync(Expression<Func<TAggregate, bool>> predicate, CancellationToken cancellationToken = default)
@@ -47,7 +47,7 @@ namespace RustRetail.SharedPersistence.Database
 
         public void Delete(TAggregate entity)
         {
-            _context.Remove(entity);
+            _dbSet.Remove(entity);
         }
 
         public async Task<bool> ExistsAsync(Expression<Func<TAggregate, bool>> predicate, CancellationToken cancellationToken = default)
@@ -106,7 +106,7 @@ namespace RustRetail.SharedPersistence.Database
 
         public void Update(TAggregate entity)
         {
-            _context.Update(entity);
+            _dbSet.Update(entity);
         }
     }
 }
