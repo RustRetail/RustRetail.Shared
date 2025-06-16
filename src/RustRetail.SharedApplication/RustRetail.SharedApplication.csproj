@@ -7,7 +7,7 @@
 		<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
 		
 		<!-- Package Metadata -->
-		<Version>1.0.11</Version>
+		<Version>1.0.2</Version>
 		<Authors>RustRetail</Authors>
 		<Company>RustRetail</Company>
 		<PackageId>RustRetail.SharedApplication</PackageId>
@@ -26,8 +26,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="icon.png" Pack="true" PackagePath=""/>
-		<PackageReference Include="RustRetail.SharedKernel" Version="1.0.11" />
+		<None Include="icon.png" Pack="true" PackagePath="" />
+		<PackageReference Include="RustRetail.SharedKernel" Version="1.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
