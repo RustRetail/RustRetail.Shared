@@ -10,6 +10,8 @@ namespace RustRetail.SharedApplication.Behaviors.Validation
         where TRequest : IRequest
         where TResponse : Result
     {
+        static Error InvalidRequest = Error.Validation("Request.Invalid", "The request is invalid. Ensure all required fields are properly set.");
+
         public async Task<TResponse> Handle(
             TRequest request,
             RequestHandlerDelegate<TResponse> next,
@@ -20,39 +22,28 @@ namespace RustRetail.SharedApplication.Behaviors.Validation
                 return await next(cancellationToken);
             }
 
-            Error[] errors = validators
-                .Select(validator => validator.Validate(request))
+            var validationResults = validators
+                .Select(validator => validator.Validate(request));
+            var validationErrors = validationResults
                 .SelectMany(validationResult => validationResult.Errors)
                 .Where(validationFailure => validationFailure is not null)
-                .Select(failure => Error.Validation(
-                    failure.PropertyName,
-                    failure.ErrorMessage))
+                .Select(failure => new
+                {
+                    Field = failure.PropertyName,
+                    Description = failure.ErrorMessage
+                })
                 .Distinct()
                 .ToArray();
+            var error = Error.Validation(InvalidRequest.Code,
+                InvalidRequest.Description,
+                validationErrors);
 
-            if (errors.Any())
+            if (validationResults.Any(vr => !vr.IsValid) && validationErrors.Any())
             {
-                return CreateValidationResult<TResponse>(errors);
+                return (TResponse)Result.Failure(error);
             }
 
             return await next(cancellationToken);
-        }
-
-        private static TResult CreateValidationResult<TResult>(Error[] errors)
-            where TResult : Result
-        {
-            if (typeof(TResult) == typeof(Result))
-            {
-                return (ValidationResult.WithErrors(errors) as TResult)!;
-            }
-
-            object validationResult = typeof(ValidationResult<>)
-                .GetGenericTypeDefinition()
-                .MakeGenericType(typeof(TResult).GenericTypeArguments[0])
-                .GetMethod(nameof(ValidationResult.WithErrors))!
-                .Invoke(null, [errors])!;
-
-            return (TResult)validationResult;
         }
     }
 }
