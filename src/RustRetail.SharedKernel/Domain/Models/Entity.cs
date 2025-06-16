@@ -15,8 +15,8 @@ namespace RustRetail.SharedKernel.Domain.Models
         }
 
         public TKey Id { get; set; } = default!;
-        public DateTimeOffset? CreatedDateTime { get; private set; }
-        public DateTimeOffset? UpdatedDateTime { get; private set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? UpdatedDateTime { get; set; }
 
         public void SetCreatedDateTime(DateTimeOffset? createdDateTime)
         {
