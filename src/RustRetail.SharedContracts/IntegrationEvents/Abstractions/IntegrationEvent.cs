@@ -1,14 +1,12 @@
-﻿using RustRetail.SharedContracts.IntegrationEvents.Abstractions;
-
-namespace RustRetail.SharedKernel.Domain.Events.Integration
+﻿namespace RustRetail.SharedContracts.IntegrationEvents.Abstractions
 {
     /// <summary>
     /// Represents a base class for integration events.
     /// </summary>
     public abstract class IntegrationEvent : IIntegrationEvent
     {
-        public Guid Id { get; } = Guid.NewGuid();
+        public Guid Id { get; init; } = Guid.NewGuid();
 
-        public DateTime OccurredOn { get; } = DateTime.UtcNow;
+        public DateTime OccurredOn { get; init; } = DateTime.UtcNow;
     }
 }
