@@ -24,9 +24,9 @@ jobs:
       - name: Extract version from .csproj
         id: get_version
         run: |
-          version=$(xmllint --xpath "string(//Project/PropertyGroup/Version)" src/RustRetail.SharedContracts/RustRetail.SharedContracts.csproj)
-          echo "version=$version"
-          echo "version=$version" >> $GITHUB_OUTPUT
+         version=$(grep -oPm1 "(?<=<Version>)[^<]+" src/RustRetail.SharedContracts/RustRetail.SharedContracts.csproj)
+         echo "version=$version"
+         echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Check if version already exists on NuGet
         id: check_nuget
