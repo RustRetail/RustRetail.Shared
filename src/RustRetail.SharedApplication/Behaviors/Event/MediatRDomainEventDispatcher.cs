@@ -14,6 +14,18 @@ namespace RustRetail.SharedApplication.Behaviors.Event
             await publisher.Publish((INotification)notification!, cancellationToken);
         }
 
+        /// <summary>
+        /// Method not implemented in this context.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task DispatchAsync(IHasDomainEvents entity, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DispatchMultipleAsync(IEnumerable<IDomainEvent> domainEvents,
             CancellationToken cancellationToken = default)
         {
