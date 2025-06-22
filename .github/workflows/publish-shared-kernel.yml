@@ -31,14 +31,16 @@ jobs:
       - name: Check if version already exists on NuGet
         id: check_nuget
         run: |
-          PACKAGE_ID="RustRetail.SharedKernel"
-          VERSION=${{ steps.get_version.outputs.version }}
-          EXISTS=$(curl -s -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID/$VERSION/$PACKAGE_ID.$VERSION.nupkg")
-          if [ "$EXISTS" == "200" ]; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
+         PACKAGE_ID="RustRetail.SharedKernel"
+         VERSION=${{ steps.get_version.outputs.version }}
+         echo "Checking for $PACKAGE_ID/$VERSION"
+         EXISTS=$(curl -s -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID/$VERSION/$PACKAGE_ID.$VERSION.nupkg")
+         echo "HTTP status: $EXISTS"
+         if [ "$EXISTS" == "200" ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+         else
+          echo "exists=false" >> $GITHUB_OUTPUT
+         fi
 
       - name: Skip if version already exists
         if: steps.check_nuget.outputs.exists == 'true'
