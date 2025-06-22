@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Newtonsoft.Json;
 using RustRetail.SharedKernel.Domain.Events.Domain;
-using RustRetail.SharedKernel.Domain.Events.Integration;
-using RustRetail.SharedKernel.Domain.Models;
-using RustRetail.SharedPersistence.Abstraction;
 
 namespace RustRetail.SharedPersistence.Interceptors
 {
@@ -39,22 +35,6 @@ namespace RustRetail.SharedPersistence.Interceptors
             foreach (var domainEvent in domainEvents)
             {
                 await dispatcher.DispatchAsync(domainEvent, cancellationToken);
-
-                // Handle integration event
-                // Convert to integration event and check if DbContext supports outbox pattern
-                if (domainEvent is IIntegrationEvent integrationEvent && context is IHasOutboxMessage)
-                {
-                    await context.Set<OutboxMessage>().AddAsync(
-                        new OutboxMessage(
-                            type: integrationEvent.GetType().Name,
-                            content: JsonConvert.SerializeObject(
-                                value: integrationEvent,
-                                settings: new JsonSerializerSettings
-                                {
-                                    TypeNameHandling = TypeNameHandling.All
-                                })),
-                        cancellationToken);
-                }
             }
         }
     }
