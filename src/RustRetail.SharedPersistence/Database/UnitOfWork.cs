@@ -93,7 +93,7 @@ namespace RustRetail.SharedPersistence.Database
             _currentTransaction = null;
         }
 
-        public async Task<int> SaveChangeAsync(CancellationToken cancellationToken = default)
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);
         }

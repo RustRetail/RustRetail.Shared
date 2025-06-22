@@ -7,7 +7,7 @@
 		<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
 		
 		<!-- Package Metadata -->
-		<Version>1.0.2</Version>
+		<Version>1.1.0</Version>
 		<Authors>RustRetail</Authors>
 		<Company>RustRetail</Company>
 		<PackageId>RustRetail.SharedPersistence</PackageId>
@@ -23,6 +23,9 @@
 		<PackageIcon>icon.png</PackageIcon>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<IncludeSource>true</IncludeSource>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -32,8 +35,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="icon.png" Pack="true" PackagePath=""/>
-		<PackageReference Include="RustRetail.SharedKernel" Version="1.0.2" />
+		<None Include="icon.png" Pack="true" PackagePath="" />
+		<PackageReference Include="RustRetail.SharedKernel" Version="1.1.0" />
 	</ItemGroup>
 
 </Project>

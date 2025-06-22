@@ -4,8 +4,21 @@ using RustRetail.SharedKernel.Domain.Models;
 
 namespace RustRetail.SharedPersistence.Database
 {
+    /// <summary>
+    /// Provides methods to evaluate and apply a <see cref="Specification{TAggregate, TKey}"/> to an <see cref="IQueryable{TAggregate}"/>.
+    /// </summary>
     public static class SpecificationEvaluator
     {
+        /// <summary>
+        /// Applies the given specification to the provided queryable, including filtering, includes, ordering, pagination, split query, and tracking options.
+        /// </summary>
+        /// <typeparam name="TAggregate">The type of the aggregate root.</typeparam>
+        /// <typeparam name="TKey">The type of the aggregate key.</typeparam>
+        /// <param name="inputQueryable">The initial queryable to apply the specification to.</param>
+        /// <param name="specification">The specification containing query criteria and options.</param>
+        /// <returns>
+        /// An <see cref="IQueryable{TAggregate}"/> with the specification applied.
+        /// </returns>
         public static IQueryable<TAggregate> GetQuery<TAggregate, TKey>(
                 IQueryable<TAggregate> inputQueryable,
                 Specification<TAggregate, TKey> specification)
@@ -75,9 +88,19 @@ namespace RustRetail.SharedPersistence.Database
             return queryable;
         }
 
+        /// <summary>
+        /// Determines whether the specified page size is valid (greater than zero).
+        /// </summary>
+        /// <param name="pageSize">The page size to validate.</param>
+        /// <returns><c>true</c> if the page size is valid; otherwise, <c>false</c>.</returns>
         private static bool IsPageSizeValid(int? pageSize)
             => pageSize.HasValue && pageSize.Value > 0;
 
+        /// <summary>
+        /// Determines whether the specified page number is valid (greater than zero).
+        /// </summary>
+        /// <param name="pageNumber">The page number to validate.</param>
+        /// <returns><c>true</c> if the page number is valid; otherwise, <c>false</c>.</returns>
         private static bool IsPageNumberValid(int? pageNumber)
             => pageNumber.HasValue && pageNumber.Value > 0;
     }
