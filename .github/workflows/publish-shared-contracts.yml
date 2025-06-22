@@ -31,9 +31,11 @@ jobs:
       - name: Check if version already exists on NuGet
         id: check_nuget
         run: |
-          PACKAGE_ID="RustRetail.SharedContracts"
+          PACKAGE_ID="rustretail.sharedcontracts"
           VERSION=${{ steps.get_version.outputs.version }}
+          echo "Checking for $PACKAGE_ID_LOWER/$VERSION_LOWER at URL https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID/$VERSION/$PACKAGE_ID.$VERSION.nupkg"
           EXISTS=$(curl -s -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID/$VERSION/$PACKAGE_ID.$VERSION.nupkg")
+          echo "Http response code: $EXISTS"
           if [ "$EXISTS" == "200" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
@@ -42,16 +44,22 @@ jobs:
 
       - name: Skip if version already exists
         if: steps.check_nuget.outputs.exists == 'true'
-        run: echo "Version ${{ steps.get_version.outputs.version }} already exists. Skipping publish." && exit 0
+        run: |
+         echo "Version ${{ steps.get_version.outputs.version }} already exists. Skipping publish."
+         exit 0
 
       - name: Restore
+        if: steps.check_nuget.outputs.exists != 'true'
         run: dotnet restore src/RustRetail.SharedContracts/RustRetail.SharedContracts.csproj
 
       - name: Build
+        if: steps.check_nuget.outputs.exists != 'true'
         run: dotnet build src/RustRetail.SharedContracts/RustRetail.SharedContracts.csproj --configuration Release --no-restore
 
       - name: Pack
+        if: steps.check_nuget.outputs.exists != 'true'
         run: dotnet pack src/RustRetail.SharedContracts/RustRetail.SharedContracts.csproj --configuration Release --no-build --output ./nupkg
 
       - name: Push to NuGet
+        if: steps.check_nuget.outputs.exists != 'true'
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
