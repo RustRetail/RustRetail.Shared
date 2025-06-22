@@ -32,7 +32,7 @@ namespace RustRetail.SharedKernel.Domain.Abstractions
         /// </summary>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>The number of state entries written to the database.</returns>
-        Task<int> SaveChangeAsync(CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Begins a new database transaction.
