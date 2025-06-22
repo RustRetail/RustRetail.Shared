@@ -33,8 +33,11 @@ jobs:
         run: |
          PACKAGE_ID="RustRetail.SharedKernel"
          VERSION=${{ steps.get_version.outputs.version }}
-         echo "Checking for $PACKAGE_ID/$VERSION"
-         EXISTS=$(curl -s -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID/$VERSION/$PACKAGE_ID.$VERSION.nupkg")
+         PACKAGE_ID_LOWER=$(echo "$PACKAGE_ID" | tr '[:upper:]' '[:lower:]')
+         VERSION_LOWER=$(echo "$VERSION" | tr '[:upper:]' '[:lower:]')
+         echo "Checking for $PACKAGE_ID_LOWER/$VERSION_LOWER"
+         echo "Checking at URL: https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID_LOWER/$VERSION_LOWER/$PACKAGE_ID_LOWER.$VERSION_LOWER.nupkg"
+         EXISTS=$(curl -s -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/$PACKAGE_ID_LOWER/$VERSION_LOWER/$PACKAGE_ID_LOWER.$VERSION_LOWER.nupkg")
          echo "HTTP status: $EXISTS"
          if [ "$EXISTS" == "200" ]; then
           echo "exists=true" >> $GITHUB_OUTPUT
