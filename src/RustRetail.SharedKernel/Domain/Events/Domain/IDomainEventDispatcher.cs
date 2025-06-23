@@ -18,12 +18,5 @@
         /// <param name="domainEvent">The domain event to dispatch.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         Task DispatchAsync(IDomainEvent domainEvent, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Dispatches all domain events for the given entity.
-        /// </summary>
-        /// <param name="entity">The entity containing domain events.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        Task DispatchAsync(IHasDomainEvents entity, CancellationToken cancellationToken = default);
     }
 }
