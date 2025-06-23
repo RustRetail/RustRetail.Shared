@@ -21,9 +21,7 @@
 		<PackageReleaseNotes>Initial release for learning and experimentation purposes.</PackageReleaseNotes>
 		<PackageIcon>icon.png</PackageIcon>
 
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<IncludeSymbols>true</IncludeSymbols>
-		<IncludeSource>true</IncludeSource>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
