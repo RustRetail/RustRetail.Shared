@@ -5,8 +5,10 @@
     /// </summary>
     public abstract class IntegrationEvent : IIntegrationEvent
     {
+        /// <inheritdoc/>
         public Guid Id { get; } = Guid.NewGuid();
 
+        /// <inheritdoc/>
         public DateTime OccurredOn { get; } = DateTime.UtcNow;
     }
 }
