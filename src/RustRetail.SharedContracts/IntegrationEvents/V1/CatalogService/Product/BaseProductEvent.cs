@@ -5,14 +5,14 @@ namespace RustRetail.SharedContracts.IntegrationEvents.V1.CatalogService.Product
     /// <summary>
     /// Generic integration event for product aggregate.
     /// </summary>
-    public abstract class ProductEvent : IntegrationEvent
+    public abstract class BaseProductEvent : IntegrationEvent
     {
         /// <summary>
         /// Product identifier.
         /// </summary>
         public Guid ProductId { get; init; }
 
-        public ProductEvent(Guid productId)
+        public BaseProductEvent(Guid productId)
         {
             ProductId = productId;
         }
